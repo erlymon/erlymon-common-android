@@ -29,4 +29,4 @@ Erlymon Common Adapter is an open source library.
 ## Docs
 
 Erlymon Common Adapter is a universal adapter for RecyclerView.
-It based on the code [DelegateAdapters Library] (https://github.com/Liverm0r/DelegateAdapters), but uses the DataBinding.
+It based on the code [DelegateAdapters Library](https://github.com/Liverm0r/DelegateAdapters), but uses the DataBinding.
