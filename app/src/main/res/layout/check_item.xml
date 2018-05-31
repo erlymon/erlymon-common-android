@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="org.erlymon.common.model.CheckViewModel"/>
+    </data>
+<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/check_box"
+    android:text="@{item.title}"
+    android:textSize="18sp"
+    android:checked="@{item.isChecked}"
+    android:layout_margin="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"/>
+</layout>
