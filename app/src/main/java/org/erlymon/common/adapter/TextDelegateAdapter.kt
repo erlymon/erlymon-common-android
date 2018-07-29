@@ -15,7 +15,7 @@
  */
 package org.erlymon.common.adapter
 
-import android.databinding.ViewDataBinding
+import androidx.databinding.ViewDataBinding
 import android.view.View
 
 import org.erlymon.common.R
