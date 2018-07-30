@@ -17,18 +17,18 @@ package org.erlymon.common.adapter
 
 import androidx.databinding.ViewDataBinding
 
-import org.erlymon.common.model.CheckViewModel
+import org.erlymon.common.model.CheckBean
 
 import org.erlymon.common.R
 import org.erlymon.common.databinding.CheckItemBinding
 
-class CheckDelegateAdapter : BaseDelegateAdapter<CheckViewModel>() {
+class CheckDelegateAdapter : BaseDelegateAdapter<CheckBean>() {
 
     override fun getLayoutId(): Int {
         return R.layout.check_item
     }
 
-    override fun bind(binding: ViewDataBinding, item: CheckViewModel) {
+    override fun bind(binding: ViewDataBinding, item: CheckBean) {
         if (binding is CheckItemBinding) {
             binding.item = item
             binding.executePendingBindings()
@@ -36,6 +36,6 @@ class CheckDelegateAdapter : BaseDelegateAdapter<CheckViewModel>() {
     }
 
     override fun isForViewType(items: List<*>, position: Int): Boolean {
-        return items[position] is CheckViewModel
+        return items[position] is CheckBean
     }
 }

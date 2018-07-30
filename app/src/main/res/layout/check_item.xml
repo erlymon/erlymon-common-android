@@ -3,7 +3,7 @@
     <data>
         <variable
             name="item"
-            type="org.erlymon.common.model.CheckViewModel"/>
+            type="org.erlymon.common.model.CheckBean"/>
     </data>
 <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/check_box"

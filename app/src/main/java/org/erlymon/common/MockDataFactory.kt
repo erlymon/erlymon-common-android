@@ -15,8 +15,8 @@
  */
 package org.erlymon.common
 
-import org.erlymon.common.model.CheckViewModel
-import org.erlymon.common.model.TextViewModel
+import org.erlymon.common.model.CheckBean
+import org.erlymon.common.model.TextBean
 
 import java.util.ArrayList
 import java.util.Random
@@ -32,11 +32,11 @@ internal object MockDataFactory {
             val item: Any
             val type = random.nextInt(3)
             if (type == 0) {
-                item = TextViewModel("Title $i", "Description $i")
+                item = TextBean("Title $i", "Description $i")
                 //} else if (type == 1) {
                 //    item = new ImageViewModel("Title " + i, R.mipmap.ic_launcher_round);
             } else {
-                item = CheckViewModel("You still love this lib", true)
+                item = CheckBean("You still love this lib", true)
             }
             objects.add(item)
         }

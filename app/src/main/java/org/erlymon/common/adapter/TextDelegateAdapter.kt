@@ -21,24 +21,26 @@ import android.view.View
 import org.erlymon.common.R
 import org.erlymon.common.databinding.TextItemBinding
 
-import org.erlymon.common.model.TextViewModel
+import org.erlymon.common.model.TextBean
 
 
-class TextDelegateAdapter(private val clickListener: View.OnClickListener) : BaseDelegateAdapter<TextViewModel>() {
+class TextDelegateAdapter(private val clickListener: OnItemListener) : BaseDelegateAdapter<TextBean>() {
 
     override fun getLayoutId(): Int {
         return R.layout.text_item
     }
 
-    override fun bind(binding: ViewDataBinding, item: TextViewModel) {
+    override fun bind(binding: ViewDataBinding, item: TextBean) {
         if (binding is TextItemBinding) {
             binding.item = item
             binding.executePendingBindings()
-            binding.root.setOnClickListener(clickListener)
+            binding.root.setOnClickListener{
+                clickListener.onClick(binding.root, binding.item as TextBean)
+            }
         }
     }
 
     override fun isForViewType(items: List<*>, position: Int): Boolean {
-        return items[position] is TextViewModel
+        return items[position] is TextBean
     }
 }

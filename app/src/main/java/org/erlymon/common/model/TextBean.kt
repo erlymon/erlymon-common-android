@@ -15,4 +15,4 @@
  */
 package org.erlymon.common.model
 
-class TextViewModel(val title: String, val description: String)
+data class TextBean(val title: String, val description: String)

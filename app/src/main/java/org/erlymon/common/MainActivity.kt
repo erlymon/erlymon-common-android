@@ -15,34 +15,21 @@
  */
 package org.erlymon.common
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.View
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
-import org.erlymon.common.adapter.CheckDelegateAdapter
-import org.erlymon.common.adapter.CompositeDelegateAdapter
-import org.erlymon.common.adapter.TextDelegateAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import org.erlymon.common.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private var adapter: CompositeDelegateAdapter<Any>? = null
+    lateinit var viewModel: MainVewModel
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-
-        adapter = CompositeDelegateAdapter.Builder<Any>()
-                .add(TextDelegateAdapter(View.OnClickListener {
-                    Toast.makeText(it.context, "Hello world", Toast.LENGTH_LONG).show()
-                }))
-                .add(CheckDelegateAdapter())
-                .build()
-
-        rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = adapter
-        adapter?.swapData(MockDataFactory.prepareData())
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProviders.of(this).get(MainVewModel::class.java)
+        binding.model = viewModel
     }
 }

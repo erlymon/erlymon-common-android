@@ -3,7 +3,7 @@
     <data>
         <variable
             name="item"
-            type="org.erlymon.common.model.TextViewModel"/>
+            type="org.erlymon.common.model.TextBean"/>
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
