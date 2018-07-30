@@ -28,5 +28,71 @@ Erlymon Common Adapter is an open source library.
     
 ## Docs
 
-Erlymon Common Adapter is a universal adapter for RecyclerView.
-It based on the code [DelegateAdapters Library](https://github.com/Liverm0r/DelegateAdapters), but uses the DataBinding.
+recycler-adapter - это универсальный адаптер для RecyclerView.
+Основной для адаптера послужил код [DelegateAdapters Library](https://github.com/Liverm0r/DelegateAdapters).
+Основное отличие от [DelegateAdapters Library](https://github.com/Liverm0r/DelegateAdapters), то что в текущей рализации
+используется DataBinding.
+
+
+Пример использования.
+
+В скрипт gradle необходимо добавить репозиторий
+```gradle
+maven {url 'https://dl.bintray.com/erlymon/android'}
+```
+и саму библиотеку
+```gradle
+implementation 'org.erlymon.common:recycler-adapter:<version>'
+```
+
+В разметку activity добавить RecyclerView
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="org.erlymon.common.common.Bindings"/>
+        <variable
+            name="model"
+            type="org.erlymon.common.MainVewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:onSelectItem="@{(view, item) ->  model.traceLog(item)}"
+            app:items="@{model.items}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+```
+
+А в activity
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+    lateinit var viewModel: MainVewModel
+    lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProviders.of(this).get(MainVewModel::class.java)
+        binding.model = viewModel
+    }
+}
+```
