@@ -96,3 +96,22 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
+
+Также необходимо реализовать привязку данных к RecyclerView
+
+```kotlin
+object Bindings {
+    @BindingAdapter(value = ["items", "onSelectItem"], requireAll = false)
+    @JvmStatic fun RecyclerView.bindData(items: List<Any>, listener: OnItemListener) {
+        items?.apply {
+            if (adapter == null) {
+                adapter = CompositeDelegateAdapter.Builder<Any>()
+                        .add(TextDelegateAdapter(listener))
+                        .add(CheckDelegateAdapter())
+                        .build()
+            }
+            (adapter as CompositeDelegateAdapter<Any>).swapData(this)
+        }
+    }
+}
+```
